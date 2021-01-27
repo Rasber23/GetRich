@@ -17,6 +17,14 @@ public class Player {
         listOfStocks = new arrayList<Stock>();
     }
 
+    public void sellStock(){
+
+    }
+
+    public void buyStock(){
+
+    }
+
     public String getName() {
         return name;
     }
