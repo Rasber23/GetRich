@@ -15,6 +15,26 @@ public class Game {
         stockMarket.add(new Stock("Walmart Inc.", "WMT", 0.0, 4.20, Risk.LOW));
     }
 
+    public void whatDoYouWant(int userinput) {
+        if (userinput == 1) {
+            System.out.println("What do you want to buy?");
+            System.out.println(getStockMarket());
+        } else if (userinput == 2) {
+            System.out.println("What do you want to sell?");
+            System.out.println("These stocks are yours");
+        } else if (userinput == 3) {
+            addRound();
+        } else {
+            if (userinput == 9) {
+                System.exit(-1);
+            }
+            System.out.println("Choose a valid number 1-3");
+        }
+    }
+
+    public List<Stock> getStockMarket() {
+        return stockMarket;
+    }
 
     public int getRound() {
         return round;
