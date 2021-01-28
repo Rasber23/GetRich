@@ -13,18 +13,34 @@ public class Player {
     public Player(String name, int age) {
         this.name = name;
         this.age = age;
-        this.balance = 0;
+        this.balance = 100;
         this.wealth = 0;
         listOfStocks = new ArrayList<Stock>();
     }
 
-    public void sellStock(){
+    public void buyStock(String ticker, int amount, List<Stock> stockMarket) {
+        for (Stock stock : stockMarket) {
+            if (stock.getTicker().equals(ticker)) {
+                listOfStocks.add(stock);
+                this.balance = balance - (stock.getCurrPrice() * amount);
+            }
+        }
+
 
     }
 
-    public void buyStock(){
+
+    public void sellStock(String ticker, int amount) {
+        for (Stock stock : listOfStocks) {
+            if (stock.getTicker().equals(ticker)) {
+                listOfStocks.remove(stock);
+                this.balance = balance + (stock.getCurrPrice() * amount);
+                break;
+            }
+        }
 
     }
+
 
     public String getName() {
         return name;
@@ -50,6 +66,10 @@ public class Player {
         this.balance = balance;
     }
 
+    public List<Stock> getListOfStocks() {
+        return listOfStocks;
+    }
+
     public double getWealth() {
         return wealth;
     }
@@ -57,6 +77,7 @@ public class Player {
     public void setWealth(double wealth) {
         this.wealth = wealth;
     }
+
 
     @Override
     public String toString() {
