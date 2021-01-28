@@ -32,6 +32,8 @@ public class Game {
         }
     }
 
+    /*test commit från Helena, testar branch*/
+
     public List<Stock> getStockMarket() {
         return stockMarket;
     }
