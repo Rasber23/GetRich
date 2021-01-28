@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ public class Player {
         this.age = age;
         this.balance = 0;
         this.wealth = 0;
-        listOfStocks = new arrayList<Stock>();
+        listOfStocks = new ArrayList<Stock>();
     }
 
     public void sellStock(){
