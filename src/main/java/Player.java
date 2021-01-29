@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -7,7 +8,7 @@ public class Player {
     private String name;
     private int age;
     private double balance;
-    private List<Stock> listOfStocks;
+    private HashMap<Stock, Integer> listOfStocks;
     private double wealth;
 
     public Player(String name, int age) {
@@ -15,30 +16,40 @@ public class Player {
         this.age = age;
         this.balance = 100;
         this.wealth = 0;
-        listOfStocks = new ArrayList<Stock>();
+        this.listOfStocks = new HashMap<Stock, Integer>();
     }
 
     public void buyStock(String ticker, int amount, List<Stock> stockMarket) {
         for (Stock stock : stockMarket) {
             if (stock.getTicker().equals(ticker)) {
-                listOfStocks.add(stock);
+
+                if (listOfStocks.containsKey(stock)) {
+                    listOfStocks.compute(stock, (k, v) -> v + amount);
+                } else {
+                    listOfStocks.put(stock, amount);
+                }
                 this.balance = balance - (stock.getCurrPrice() * amount);
             }
         }
-
-
     }
 
-
     public void sellStock(String ticker, int amount) {
-        for (Stock stock : listOfStocks) {
+        for (Stock stock : listOfStocks.keySet()) {
             if (stock.getTicker().equals(ticker)) {
-                listOfStocks.remove(stock);
+
+                /* Om amount är större än value ta bort och sätt amount till value*/
+                if (amount > listOfStocks.get(stock)) {
+                    amount = listOfStocks.get(stock);
+                    listOfStocks.remove(stock);
+                } else {
+                    int finalAmount = amount;
+                    listOfStocks.compute(stock, (k, v) -> v - finalAmount);
+                }
                 this.balance = balance + (stock.getCurrPrice() * amount);
                 break;
+
             }
         }
-
     }
 
 
@@ -66,7 +77,7 @@ public class Player {
         this.balance = balance;
     }
 
-    public List<Stock> getListOfStocks() {
+    public HashMap<Stock, Integer> getListOfStocks() {
         return listOfStocks;
     }
 
