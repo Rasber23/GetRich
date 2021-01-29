@@ -20,8 +20,8 @@ class PlayerTest {
 
     @Test
     void testBuyStock(){
-        player.buyStock("TSLA",1,g1.getStockMarket());
-        assertEquals("TSLA",player.getListOfStocks().get(0).getTicker());
+        player.buyStock("GME",1,g1.getStockMarket());
+        assertTrue(player.getListOfStocks().containsKey(g1.getStockMarket().get(1)));
     }
 
     @Test
