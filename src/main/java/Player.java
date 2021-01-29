@@ -23,6 +23,11 @@ public class Player {
         for (Stock stock : stockMarket) {
             if (stock.getTicker().equals(ticker)) {
 
+                    /* Här finns det lite gott */
+                if(stock.getCurrPrice() * amount > getBalance()) {
+                   /* throw new InsufficientBalanceException("Balance too low"); */
+                }
+
                 if (listOfStocks.containsKey(stock)) {
                     listOfStocks.compute(stock, (k, v) -> v + amount);
                 } else {
@@ -37,8 +42,8 @@ public class Player {
         for (Stock stock : listOfStocks.keySet()) {
             if (stock.getTicker().equals(ticker)) {
 
-                /* Om amount är större än value ta bort och sätt amount till value*/
-                if (amount > listOfStocks.get(stock)) {
+                /* Om amount är större eller lika med än value ta bort och sätt amount till value*/
+                if (amount >= listOfStocks.get(stock)) {
                     amount = listOfStocks.get(stock);
                     listOfStocks.remove(stock);
                 } else {
@@ -47,7 +52,6 @@ public class Player {
                 }
                 this.balance = balance + (stock.getCurrPrice() * amount);
                 break;
-
             }
         }
     }
