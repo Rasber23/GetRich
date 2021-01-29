@@ -14,6 +14,10 @@ public class Game {
         stockMarket.add(new Stock("JP Morgan", "JPM", 0.0, 45.00, Risk.MID));
         stockMarket.add(new Stock("Walmart Inc.", "WMT", 0.0, 4.20, Risk.LOW));
     }
+    /* Test test, egen branch - syns detta? Gjorde en createNewUser() här som kallas på i main...*/
+    public void createNewUser(String name, int age) {
+        Player player = new Player(name, age);
+    }
 
     public void whatDoYouWant(int userinput) {
         if (userinput == 1) {
@@ -31,6 +35,8 @@ public class Game {
             System.out.println("Choose a valid number 1-3");
         }
     }
+
+    /*test commit från Helena, testar branch*/
 
     public List<Stock> getStockMarket() {
         return stockMarket;
