@@ -14,12 +14,14 @@ public class Game {
         stockMarket.add(new Stock("JP Morgan", "JPM", 0.0, 45.00, Risk.MID));
         stockMarket.add(new Stock("Walmart Inc.", "WMT", 0.0, 4.20, Risk.LOW));
     }
-    /* Test test, egen branch - syns detta? Gjorde en createNewUser() här som kallas på i main...*/
-    public void createNewUser(String name, int age) {
-        Player player = new Player(name, age);
-    }
 
-    public void whatDoYouWant(int userinput) {
+    /* Tog bort pga came to my senses....... lol /h */
+    /*public Player createNewUser(String name, int age) {
+        Player player = new Player(name, age);
+        return player;
+    }*/
+
+    public void whatDoYouWant(int userinput, Player player) {
         if (userinput == 1) {
             System.out.println("What do you want to buy?");
             System.out.println(getStockMarket());
@@ -28,15 +30,16 @@ public class Game {
             System.out.println("These stocks are yours");
         } else if (userinput == 3) {
             addRound();
+        } else if (userinput == 4) {
+            System.out.println("Your current balance is: " + player.getBalance() + " $.");
         } else {
             if (userinput == 9) {
                 System.exit(-1);
             }
-            System.out.println("Choose a valid number 1-3");
+            System.out.println("Choose a valid number 1-4");
         }
     }
 
-    /*test commit från Helena, testar branch*/
 
     public List<Stock> getStockMarket() {
         return stockMarket;
