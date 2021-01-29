@@ -26,7 +26,7 @@ public class Player {
                 if (listOfStocks.containsKey(stock)) {
                     listOfStocks.compute(stock, (k, v) -> v + amount);
                 } else {
-                    listOfStocks.putIfAbsent(stock, amount);
+                    listOfStocks.put(stock, amount);
                 }
                 this.balance = balance - (stock.getCurrPrice() * amount);
             }
@@ -36,9 +36,18 @@ public class Player {
     public void sellStock(String ticker, int amount) {
         for (Stock stock : listOfStocks.keySet()) {
             if (stock.getTicker().equals(ticker)) {
-                listOfStocks.remove(stock);
+
+                /* Om amount är större än value ta bort och sätt amount till value*/
+                if (amount > listOfStocks.get(stock)) {
+                    amount = listOfStocks.get(stock);
+                    listOfStocks.remove(stock);
+                } else {
+                    int finalAmount = amount;
+                    listOfStocks.compute(stock, (k, v) -> v - finalAmount);
+                }
                 this.balance = balance + (stock.getCurrPrice() * amount);
                 break;
+
             }
         }
     }

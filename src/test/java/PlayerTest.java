@@ -36,10 +36,13 @@ class PlayerTest {
     void testSellStock(){
         player.buyStock("TSLA",1,g1.getStockMarket());
         player.sellStock("TSLA",1);
-
         assertEquals(0,player.getListOfStocks().size());
     }
 
-
-
+    @Test
+    void testSellHalfOfValueStock(){
+        player.buyStock("TSLA",2,g1.getStockMarket());
+        player.sellStock("TSLA",1);
+        assertEquals(1,player.getListOfStocks().size());
+    }
 }
