@@ -16,6 +16,14 @@ public class Stock {
         this.risk = risk;
     }
 
+    public void upDatePrePrice(){
+        this.setPrePrice(this.currPrice);
+    }
+
+    public void setPrePrice(double prePrice) {
+        this.prePrice = prePrice;
+    }
+
     public String getName() {
         return name;
     }
@@ -36,9 +44,6 @@ public class Stock {
         return prePrice;
     }
 
-    public void setPrePrice(double prePrice) {
-        this.prePrice = prePrice;
-    }
 
     public double getCurrPrice() {
         return currPrice;

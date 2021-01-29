@@ -29,7 +29,6 @@ public class Player {
 
     }
 
-
     public void sellStock(String ticker, int amount) {
         for (Stock stock : listOfStocks) {
             if (stock.getTicker().equals(ticker)) {
