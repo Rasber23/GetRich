@@ -22,7 +22,12 @@ public class Player {
     public void buyStock(String ticker, int amount, List<Stock> stockMarket) {
         for (Stock stock : stockMarket) {
             if (stock.getTicker().equals(ticker)) {
-                listOfStocks.putIfAbsent(stock, 1);
+
+                if (listOfStocks.containsKey(stock)) {
+                    listOfStocks.compute(stock, (k, v) -> v + amount);
+                } else {
+                    listOfStocks.putIfAbsent(stock, amount);
+                }
                 this.balance = balance - (stock.getCurrPrice() * amount);
             }
         }
