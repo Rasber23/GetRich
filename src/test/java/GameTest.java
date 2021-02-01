@@ -40,6 +40,8 @@ class GameTest {
 
     @Test
     void addRound() {
+        g1.addRound();
+        assertEquals(2, g1.getRound() );
     }
-    
+
 }
