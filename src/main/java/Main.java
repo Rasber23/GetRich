@@ -17,6 +17,10 @@ public class Main {
         player.calculateWealth();
 
         while (userinput != 9) {
+            if (game.getRound() > 5) {
+                break;
+            }
+            System.out.println("Day: " + game.getRound());
             System.out.println("You are worth: " + player.getWealth());
             System.out.println("What do you want to do?");
             System.out.println("Press 1 for buy stocks");
@@ -24,10 +28,9 @@ public class Main {
             System.out.println("Press 3 for sleep");
             System.out.println("Press 4 to see your current balance");
             userinput = scan.nextInt();
-
-
             game.whatDoYouWant(userinput, player);
         }
+        System.out.println("Endgame");
     }
 }
 
