@@ -14,7 +14,10 @@ public class Main {
 
         Player player = new Player(userName, userAge);
 
+        player.calculateWealth();
+
         while (userinput != 9) {
+            System.out.println("You are worth: " + player.getWealth());
             System.out.println("What do you want to do?");
             System.out.println("Press 1 for buy stocks");
             System.out.println("Press 2 sell stocks");

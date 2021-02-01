@@ -37,6 +37,7 @@ public class Player {
         }
     }
 
+
     public void sellStock(String ticker, int amount) {
         for (Stock stock : listOfStocks.keySet()) {
             if (stock.getTicker().equals(ticker)) {
@@ -53,6 +54,17 @@ public class Player {
                 break;
             }
         }
+    }
+
+
+    public void calculateWealth() {
+        wealth = 0;
+
+        for (Stock stock : listOfStocks.keySet()) {
+            wealth = listOfStocks.get(stock) * stock.getCurrPrice();
+        }
+
+        wealth += balance;
     }
 
 

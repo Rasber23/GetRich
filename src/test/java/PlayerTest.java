@@ -7,6 +7,7 @@ class PlayerTest {
     private Player player;
     private Game g1;
     private Stock stock;
+
     public PlayerTest(){
        player = new Player("mrTestsson",69);
        g1 = new Game();
@@ -57,5 +58,14 @@ class PlayerTest {
         player.buyStock("GME",2,g1.getStockMarket());
         player.sellStock("GME",1);
         assertEquals(1,player.getListOfStocks().size());
+    }
+
+
+    @Test
+    void testCalculateWealth() {
+        PlayerTest p1 = new PlayerTest();
+        player.buyStock("GME", 1, g1.getStockMarket());
+        player.calculateWealth();
+        assertEquals(100, player.getWealth());
     }
 }

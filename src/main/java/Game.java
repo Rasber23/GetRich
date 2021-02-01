@@ -16,11 +16,6 @@ public class Game {
         stockMarket.add(new Stock("Walmart Inc.", "WMT", 4.19, 4.20, Risk.LOW));
     }
 
-    /* Tog bort pga came to my senses....... lol /h */
-    /*public Player createNewUser(String name, int age) {
-        Player player = new Player(name, age);
-        return player;
-    }*/
 
     public void whatDoYouWant(int userinput, Player player) {
         if (userinput == 1) {
@@ -30,7 +25,7 @@ public class Game {
             System.out.println("What do you want to sell?");
             System.out.println("These stocks are yours");
         } else if (userinput == 3) {
-            this.newRound();
+            this.newRound(player);
         } else if (userinput == 4) {
             System.out.println("Your current balance is: " + player.getBalance() + " $.");
         } else {
@@ -65,13 +60,13 @@ public class Game {
         }
     }
 
-    public void newRound() {
+    public void newRound(Player player) {
         this.addRound();
         for (Stock stock:stockMarket) {
             stock.upDatePrePrice();
         }
         this.changeStocks();
-
+        player.calculateWealth();
     }
 
     public void addRound() {
