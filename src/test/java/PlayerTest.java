@@ -7,11 +7,16 @@ class PlayerTest {
     private Player player;
     private Game g1;
     private Stock stock;
+    private Stock tesla;
+    private Stock gme;
+    private Stock dis;
 
     public PlayerTest(){
        player = new Player("mrTestsson",69);
        g1 = new Game();
-       stock = new Stock("GameStop", "GME", 0.0, 69.69, Risk.HIGH);
+       tesla = new Stock("Tesla", "TSLA", 50.64, 101.00, Risk.HIGH);
+       gme = new Stock("GameStop", "GME", 0.0, 69.69, Risk.HIGH);
+       dis = new Stock("Walt Disney", "DIS", 20.0, 25.00, Risk.MID);
     }
 
     @Test
@@ -22,7 +27,7 @@ class PlayerTest {
     @Test
     void testBuyStock(){
         player.buyStock("GME",1,g1.getStockMarket());
-        assertTrue(player.getListOfStocks().containsKey(g1.getStockMarket().get(1)));
+        assertTrue(player.getListOfStocks().containsKey(gme));
     }
 
     @Test
@@ -43,9 +48,7 @@ class PlayerTest {
     void testBuySameStock(){
         player.buyStock("DIS",1,g1.getStockMarket());
         player.buyStock("DIS",1,g1.getStockMarket());
-        assertTrue(player.getListOfStocks().get(
-                g1.getStockMarket().get(2)
-        ) == 2);
+        assertTrue(player.getListOfStocks().get(dis) == 2);
     }
 
     @Test
