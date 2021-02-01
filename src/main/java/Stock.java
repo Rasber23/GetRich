@@ -79,9 +79,7 @@ public class Stock {
         return "Stock{" +
                 "name='" + name + '\'' +
                 ", ticker='" + ticker + '\'' +
-                ", prePrice=" + prePrice +
                 ", currPrice=" + currPrice +
-                ", risk=" + risk +
                 '}';
     }
 

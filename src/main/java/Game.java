@@ -25,18 +25,28 @@ public class Game {
         System.out.println("What do you want to buy?");
         System.out.println("Type ticker");
         userInputTicker= scan.next();
-        System.out.println("how meny");
+        System.out.println("How many?");
         userInputAmount= scan.nextInt();
 
         player.buyStock(userInputTicker,userInputAmount,stockMarket);
+    }
+
+    public void userActionSellStock(Player player){
+        System.out.println(player.getListOfStocks());
+        System.out.println("What do you want to sell?");
+        System.out.println("Type ticker");
+        userInputTicker= scan.next();
+        System.out.println("How many?");
+        userInputAmount= scan.nextInt();
+
+        player.sellStock(userInputTicker, userInputAmount);
     }
 
     public void whatDoYouWant(int userinput, Player player) {
         if (userinput == 1) {
           this.userActionBuyStock(player);
         } else if (userinput == 2) {
-            System.out.println("What do you want to sell?");
-            System.out.println("These stocks are yours");
+            this.userActionSellStock(player);
         } else if (userinput == 3) {
             this.newRound(player);
         } else if (userinput == 4) {
