@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -22,7 +23,7 @@ public class Game {
     }
 
     public void userActionBuyStock(Player player) {
-        System.out.println(getStockMarket());
+        System.out.println(displayStockMarket());
         System.out.println("What do you want to buy?");
         System.out.println("Type ticker");
         userInputTicker = scan.next();
@@ -33,7 +34,7 @@ public class Game {
     }
 
     public void userActionSellStock(Player player) {
-        System.out.println(player.getListOfStocks());
+        System.out.println(player.displayListOfStocks());
         System.out.println("What do you want to sell?");
         System.out.println("Type ticker");
         userInputTicker = scan.next();
@@ -104,6 +105,12 @@ public class Game {
             return false;
         }
         return true;
+    }
+
+    /* Behövs ett test här, hur? */
+    public String displayStockMarket() {
+        String displaySM = Arrays.toString(stockMarket.toArray()).replace(", N", "N").replace(", N", "N");
+        return displaySM.substring(1,displaySM.length()-1);
     }
 
     @Override

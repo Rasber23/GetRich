@@ -76,11 +76,7 @@ public class Stock {
 
     @Override
     public String toString() {
-        return "Stock{" +
-                "name='" + name + '\'' +
-                ", ticker='" + ticker + '\'' +
-                ", currPrice=" + currPrice +
-                '}';
+        return "Name: " + name + " (" + ticker + "). Price: " + currPrice + ".\n";
     }
 
 }
