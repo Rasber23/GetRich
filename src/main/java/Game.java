@@ -1,10 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
     private int round;
     private final List<Stock> stockMarket;
+    Scanner scan = new Scanner(System.in);
+    String userInputTicker;
+    int userInputAmount;
 
     public Game() {
         this.round = 1;
@@ -16,11 +20,20 @@ public class Game {
         stockMarket.add(new Stock("Walmart Inc.", "WMT", 4.19, 4.20, Risk.LOW));
     }
 
+    public void userActionBuyStock(Player player){
+        System.out.println(getStockMarket());
+        System.out.println("What do you want to buy?");
+        System.out.println("Type ticker");
+        userInputTicker= scan.next();
+        System.out.println("how meny");
+        userInputAmount= scan.nextInt();
+
+        player.buyStock(userInputTicker,userInputAmount,stockMarket);
+    }
 
     public void whatDoYouWant(int userinput, Player player) {
         if (userinput == 1) {
-            System.out.println("What do you want to buy?");
-            System.out.println(getStockMarket());
+          this.userActionBuyStock(player);
         } else if (userinput == 2) {
             System.out.println("What do you want to sell?");
             System.out.println("These stocks are yours");
