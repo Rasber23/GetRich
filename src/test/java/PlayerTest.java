@@ -41,9 +41,11 @@ class PlayerTest {
 
     @Test
     void testBuySameStock(){
-        player.buyStock("GME",1,g1.getStockMarket());
-        player.buyStock("GME",1,g1.getStockMarket());
-        assertTrue(player.getListOfStocks().get(stock) == 2);
+        player.buyStock("DIS",1,g1.getStockMarket());
+        player.buyStock("DIS",1,g1.getStockMarket());
+        assertTrue(player.getListOfStocks().get(
+                g1.getStockMarket().get(2)
+        ) == 2);
     }
 
     @Test
