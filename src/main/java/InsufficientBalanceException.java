@@ -1,4 +1,6 @@
-public class InsufficientBalanceException extends Exception {
+
+
+public class InsufficientBalanceException extends RuntimeException {
     public InsufficientBalanceException() {
         super();
     }

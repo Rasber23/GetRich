@@ -23,9 +23,8 @@ public class Player {
         for (Stock stock : stockMarket) {
             if (stock.getTicker().equals(ticker)) {
 
-                    /* Här finns det lite gott */
                 if(stock.getCurrPrice() * amount > getBalance()) {
-                   /* throw new InsufficientBalanceException("Balance too low"); */
+                   throw new InsufficientBalanceException("Balance too low");
                 }
 
                 if (listOfStocks.containsKey(stock)) {
