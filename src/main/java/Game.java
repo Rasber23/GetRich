@@ -1,18 +1,19 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
     private int round;
-    private List<Stock> stockMarket;
+    private final List<Stock> stockMarket;
 
     public Game() {
         this.round = 1;
         this.stockMarket = new ArrayList<Stock>();
-        stockMarket.add(new Stock("Tesla", "TSLA", 0.0, 101.00, Risk.HIGH));
-        stockMarket.add(new Stock("GameStop", "GME", 0.0, 69.69, Risk.HIGH));
-        stockMarket.add(new Stock("Walt Disney", "DIS", 0.0, 25.00, Risk.MID));
-        stockMarket.add(new Stock("JP Morgan", "JPM", 0.0, 45.00, Risk.MID));
-        stockMarket.add(new Stock("Walmart Inc.", "WMT", 0.0, 4.20, Risk.LOW));
+        stockMarket.add(new Stock("Tesla", "TSLA", 50.64, 101.00, Risk.HIGH));
+        stockMarket.add(new Stock("GameStop", "GME", 34.0, 69.69, Risk.HIGH));
+        stockMarket.add(new Stock("Walt Disney", "DIS", 20.0, 25.00, Risk.MID));
+        stockMarket.add(new Stock("JP Morgan", "JPM", 40.0, 45.00, Risk.MID));
+        stockMarket.add(new Stock("Walmart Inc.", "WMT", 4.19, 4.20, Risk.LOW));
     }
 
     /* Tog bort pga came to my senses....... lol /h */
@@ -47,6 +48,30 @@ public class Game {
 
     public int getRound() {
         return round;
+    }
+
+    public int random(Enum<Risk> risk) {
+        if (risk == Risk.HIGH) {
+            return ThreadLocalRandom.current().nextInt(-5, 5+1) * 5;
+        } else if (risk == Risk.MID) {
+            return ThreadLocalRandom.current().nextInt(-5, 5+1) * 2;
+        }
+        return ThreadLocalRandom.current().nextInt(-5, 5+1);
+    }
+
+    public void changeStocks() {
+        for (Stock stock : stockMarket) {
+            stock.setCurrPrice(stock.getCurrPrice() * random(stock.getRisk()));
+        }
+    }
+
+    public void newRound() {
+        this.addRound();
+        for (Stock stock:stockMarket) {
+            stock.upDatePrePrice();
+        }
+        this.changeStocks();
+
     }
 
     public void addRound() {
