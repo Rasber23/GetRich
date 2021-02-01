@@ -30,7 +30,7 @@ public class Game {
             System.out.println("What do you want to sell?");
             System.out.println("These stocks are yours");
         } else if (userinput == 3) {
-            addRound();
+            this.newRound();
         } else if (userinput == 4) {
             System.out.println("Your current balance is: " + player.getBalance() + " $.");
         } else {
