@@ -1,5 +1,8 @@
 import java.util.*;
-
+/**
+ * Represents a player in the game GetRichOrDieTrying
+ *
+ * */
 public class Player {
 
     private String name;
@@ -19,7 +22,11 @@ public class Player {
     /**
      * Lets you buy stock from the Stockmarket
      *
-     * @ticker a String
+     * @param ticker  the stock ticker
+     * @param amount  the amount of stocks the user wants to buy
+     * @param stockMarket  list with available stocks to buy
+     *
+     * @throws InsufficientBalanceException if balance is too low for purchase
      **/
     public void buyStock(String ticker, int amount, List<Stock> stockMarket) {
         for (Stock stock : stockMarket) {
@@ -39,7 +46,13 @@ public class Player {
         }
     }
 
-
+    /**
+     * Lets you sell stock you bought previously
+     *
+     * @param ticker  the stock ticker
+     * @param amount  the amount of stocks the user wants to sell
+     *
+     **/
     public void sellStock(String ticker, int amount) {
         for (Stock stock : listOfStocks.keySet()) {
             if (stock.getTicker().toLowerCase().trim().equals(ticker.toLowerCase().trim())) {
@@ -58,7 +71,10 @@ public class Player {
         }
     }
 
-
+    /**
+     * Calculates what the users stocks are worth plus users existing balance
+     *
+     * */
     public void calculateWealth() {
         wealth = 0;
 
@@ -106,7 +122,11 @@ public class Player {
         this.wealth = wealth;
     }
 
-    
+    /**
+     * Displays the list of Stocks in users inventory and the amount of each one
+     *
+     * @return  a String containing the stocks in the users inventory, and the amount of each one
+     * */
     public String displayListOfStocks() {
         StringBuilder display = new StringBuilder();
         for (Stock stock : listOfStocks.keySet()) {
