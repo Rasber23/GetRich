@@ -35,11 +35,12 @@ class GameTest {
         assertTrue(randomNr>-5 && randomNr<10);
     }
 
-    @RepeatedTest(100)
+    @RepeatedTest(1000)
     void changeStocksNeverZERO(){
         g1.changeStocks();
         Stock TSLA = g1.getStockMarket().get(0);
         assertNotEquals(0,TSLA.getCurrPrice(),0.001);
+        System.out.println(TSLA.getCurrPrice());
     }
 
     @Test
