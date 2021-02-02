@@ -16,9 +16,14 @@ public class Player {
         this.listOfStocks = new HashMap<Stock, Integer>();
     }
 
+    /**
+     * Lets you buy stock from the Stockmarket
+     *
+     * @ticker a String
+     **/
     public void buyStock(String ticker, int amount, List<Stock> stockMarket) {
         for (Stock stock : stockMarket) {
-            if (stock.getTicker().equals(ticker)) {
+            if (stock.getTicker().toLowerCase().trim().equals(ticker.toLowerCase().trim())) {
 
                 if (stock.getCurrPrice() * amount > getBalance()) {
                     throw new InsufficientBalanceException("Balance is too low");
@@ -37,7 +42,7 @@ public class Player {
 
     public void sellStock(String ticker, int amount) {
         for (Stock stock : listOfStocks.keySet()) {
-            if (stock.getTicker().equals(ticker)) {
+            if (stock.getTicker().toLowerCase().trim().equals(ticker.toLowerCase().trim())) {
 
                 /* Om amount är större eller lika med än value ta bort och sätt amount till value*/
                 if (amount >= listOfStocks.get(stock)) {
