@@ -1,14 +1,16 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
-    private int round;
+    public final static double tax = 0.15;
     private final List<Stock> stockMarket;
     Scanner scan = new Scanner(System.in);
     String userInputTicker;
     int userInputAmount;
+    private int round;
 
     public Game() {
         this.round = 1;
@@ -21,7 +23,7 @@ public class Game {
     }
 
     public void userActionBuyStock(Player player) {
-        System.out.println(getStockMarket());
+        System.out.println(displayStockMarket());
         System.out.println("What do you want to buy?");
         System.out.println("Type ticker");
         userInputTicker = scan.next();
@@ -32,7 +34,7 @@ public class Game {
     }
 
     public void userActionSellStock(Player player) {
-        System.out.println(player.getListOfStocks());
+        System.out.println(player.displayListOfStocks());
         System.out.println("What do you want to sell?");
         System.out.println("Type ticker");
         userInputTicker = scan.next();
@@ -44,7 +46,11 @@ public class Game {
 
     public void whatDoYouWant(int userinput, Player player) {
         if (userinput == 1) {
-            this.userActionBuyStock(player);
+            try {
+                this.userActionBuyStock(player);
+            } catch (InsufficientBalanceException ex){
+                System.out.println(ex.getMessage());
+            }
         } else if (userinput == 2) {
             this.userActionSellStock(player);
         } else if (userinput == 3) {
@@ -100,6 +106,20 @@ public class Game {
 
     public void addRound() {
         round++;
+    }
+
+    public boolean endGame(Player player) {
+        player.calculateWealth();
+        double wealthAfterTax = player.getWealth() * (1 - tax);
+        if( wealthAfterTax < 100)  {
+            return false;
+        }
+        return true;
+    }
+
+    public String displayStockMarket() {
+        String displaySM = Arrays.toString(stockMarket.toArray()).replace(", N", "N").replace(", N", "N");
+        return displaySM.substring(1,displaySM.length()-1);
     }
 
     @Override

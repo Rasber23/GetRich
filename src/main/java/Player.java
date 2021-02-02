@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Player {
 
@@ -23,8 +20,8 @@ public class Player {
         for (Stock stock : stockMarket) {
             if (stock.getTicker().equals(ticker)) {
 
-                if(stock.getCurrPrice() * amount > getBalance()) {
-                   throw new InsufficientBalanceException("Balance too low");
+                if (stock.getCurrPrice() * amount > getBalance()) {
+                    throw new InsufficientBalanceException("Balance is too low");
                 }
 
                 if (listOfStocks.containsKey(stock)) {
@@ -102,6 +99,16 @@ public class Player {
 
     public void setWealth(double wealth) {
         this.wealth = wealth;
+    }
+
+    
+    public String displayListOfStocks() {
+        StringBuilder display = new StringBuilder();
+        for (Stock stock : listOfStocks.keySet()) {
+            display.append(stock + "Amount: " + listOfStocks.get(stock) + ". \n\n");
+        }
+        display.delete(display.length()-2, display.length()).append("\n");
+        return display.toString();
     }
 
 

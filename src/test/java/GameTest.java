@@ -48,7 +48,23 @@ class GameTest {
     }
 
     @Test
-    void addRound() {
+    void testAddRound() {
+        g1.addRound();
+        assertEquals(2, g1.getRound() );
     }
-    
+
+    @Test
+    void testCheckEndGameFail() {
+        player.setBalance(117.00);
+        g1.endGame(player);
+        assertFalse(g1.endGame(player));
+    }
+
+    @Test
+    void testCheckEndGameWin() {
+        player.setBalance(118.00);
+        g1.endGame(player);
+        assertTrue(g1.endGame(player));
+    }
+
 }
