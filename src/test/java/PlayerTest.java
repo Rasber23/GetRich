@@ -36,14 +36,14 @@ class PlayerTest {
         assertEquals(75.00, player.getBalance());
     }
 
-    /*Hur testa när jag catchar Exception? Oklart om den här behövs längre? /H */
-    /*@Test
+
+    @Test
     void testIfBalanceIsInsufficient(){
         PlayerTest playerTest = new PlayerTest();
         assertThrows(InsufficientBalanceException.class, () -> {
             player.buyStock("TSLA", 1, g1.getStockMarket());
         });
-    }*/
+    }
 
     @Test
     void testBuySameStock(){

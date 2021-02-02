@@ -46,7 +46,11 @@ public class Game {
 
     public void whatDoYouWant(int userinput, Player player) {
         if (userinput == 1) {
-            this.userActionBuyStock(player);
+            try {
+                this.userActionBuyStock(player);
+            } catch (InsufficientBalanceException ex){
+                System.out.println(ex.getMessage());
+            }
         } else if (userinput == 2) {
             this.userActionSellStock(player);
         } else if (userinput == 3) {
@@ -107,7 +111,6 @@ public class Game {
         return true;
     }
 
-    /* Behövs ett test här, hur? */
     public String displayStockMarket() {
         String displaySM = Arrays.toString(stockMarket.toArray()).replace(", N", "N").replace(", N", "N");
         return displaySM.substring(1,displaySM.length()-1);

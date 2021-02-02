@@ -17,12 +17,11 @@ public class Player {
     }
 
     public void buyStock(String ticker, int amount, List<Stock> stockMarket) {
-        try {
         for (Stock stock : stockMarket) {
             if (stock.getTicker().equals(ticker)) {
 
                 if (stock.getCurrPrice() * amount > getBalance()) {
-                    throw new InsufficientBalanceException("Balance too low");
+                    throw new InsufficientBalanceException("Balance is too low");
                 }
 
                 if (listOfStocks.containsKey(stock)) {
@@ -32,9 +31,6 @@ public class Player {
                 }
                 this.balance = balance - (stock.getCurrPrice() * amount);
             }
-        }
-    } catch (InsufficientBalanceException ex) {
-            System.out.println("Your balance is too low for this purchase, please try something else.\n");
         }
     }
 
@@ -105,7 +101,7 @@ public class Player {
         this.wealth = wealth;
     }
 
-    /* Behövs ett test här, hur? */
+    
     public String displayListOfStocks() {
         StringBuilder display = new StringBuilder();
         for (Stock stock : listOfStocks.keySet()) {
