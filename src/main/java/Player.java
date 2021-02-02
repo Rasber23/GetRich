@@ -35,7 +35,6 @@ public class Player {
         }
     } catch (InsufficientBalanceException ex) {
             System.out.println("Your balance is too low for this purchase, please try something else.\n");
-            throw ex;
         }
     }
 
