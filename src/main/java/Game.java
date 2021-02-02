@@ -20,31 +20,31 @@ public class Game {
         stockMarket.add(new Stock("Walmart Inc.", "WMT", 4.19, 4.20, Risk.LOW));
     }
 
-    public void userActionBuyStock(Player player){
+    public void userActionBuyStock(Player player) {
         System.out.println(getStockMarket());
         System.out.println("What do you want to buy?");
         System.out.println("Type ticker");
-        userInputTicker= scan.next();
+        userInputTicker = scan.next();
         System.out.println("How many?");
-        userInputAmount= scan.nextInt();
+        userInputAmount = scan.nextInt();
 
-        player.buyStock(userInputTicker,userInputAmount,stockMarket);
+        player.buyStock(userInputTicker, userInputAmount, stockMarket);
     }
 
-    public void userActionSellStock(Player player){
+    public void userActionSellStock(Player player) {
         System.out.println(player.getListOfStocks());
         System.out.println("What do you want to sell?");
         System.out.println("Type ticker");
-        userInputTicker= scan.next();
+        userInputTicker = scan.next();
         System.out.println("How many?");
-        userInputAmount= scan.nextInt();
+        userInputAmount = scan.nextInt();
 
         player.sellStock(userInputTicker, userInputAmount);
     }
 
     public void whatDoYouWant(int userinput, Player player) {
         if (userinput == 1) {
-          this.userActionBuyStock(player);
+            this.userActionBuyStock(player);
         } else if (userinput == 2) {
             this.userActionSellStock(player);
         } else if (userinput == 3) {
@@ -68,24 +68,30 @@ public class Game {
         return round;
     }
 
-    public int random(Enum<Risk> risk) {
+    public double random(Enum<Risk> risk) {
         if (risk == Risk.HIGH) {
-            return ThreadLocalRandom.current().nextInt(-5, 5+1) * 5;
+            return ThreadLocalRandom.current().nextDouble(-5, 5 + 1) * 1.5;
         } else if (risk == Risk.MID) {
-            return ThreadLocalRandom.current().nextInt(-5, 5+1) * 2;
+            return ThreadLocalRandom.current().nextDouble(-5, 5 + 1) * 1.2;
         }
-        return ThreadLocalRandom.current().nextInt(-5, 5+1);
+        return ThreadLocalRandom.current().nextDouble(-5, 5 + 1);
     }
 
     public void changeStocks() {
         for (Stock stock : stockMarket) {
-            stock.setCurrPrice(stock.getCurrPrice() * random(stock.getRisk()));
+            double stockRisk = random(stock.getRisk());
+            if (stockRisk < 0) {
+                stock.setCurrPrice(stock.getCurrPrice() * (Math.abs(stockRisk) / 10));
+            } else {
+                stock.setCurrPrice(stock.getCurrPrice() * ((random(stock.getRisk()) / 10) + 1));
+            }
+
         }
     }
 
     public void newRound(Player player) {
         this.addRound();
-        for (Stock stock:stockMarket) {
+        for (Stock stock : stockMarket) {
             stock.upDatePrePrice();
         }
         this.changeStocks();

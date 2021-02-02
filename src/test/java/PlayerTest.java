@@ -68,4 +68,7 @@ class PlayerTest {
         player.calculateWealth();
         assertEquals(100, player.getWealth());
     }
+
+
+
 }

@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,12 +31,20 @@ class GameTest {
 
     @Test
     void testRandom(){
-        int randomNr=g1.random(Risk.LOW);
+        double randomNr=g1.random(Risk.LOW);
         assertTrue(randomNr>-5 && randomNr<10);
+    }
+
+    @RepeatedTest(100)
+    void changeStocksNeverZERO(){
+        g1.changeStocks();
+        Stock TSLA = g1.getStockMarket().get(0);
+        assertNotEquals(0,TSLA.getCurrPrice(),0.001);
     }
 
     @Test
     void whatDoYouWant() {
+
     }
 
     @Test
