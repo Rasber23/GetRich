@@ -10,7 +10,7 @@ public class Main {
             int userinput = 0;
 
             System.out.println("What is your name?");
-            String userName = scan.next();
+            String userName = scan.nextLine();
             System.out.println("How old are you?");
             int userAge = scan.nextInt();
 
