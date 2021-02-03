@@ -25,6 +25,11 @@ public class Game {
         stockMarket.add(new Stock("Walmart Inc.", "WMT", 4.19, 4.20, Risk.LOW));
     }
 
+    /**
+     * Ask the user what stock they want to buy, and how many. Puts the user input into method buyStock().
+     *
+     * @param player  the user playing the game
+     */
     public void userActionBuyStock(Player player) {
         System.out.println(displayStockMarket());
         System.out.println("What do you want to buy?");
@@ -36,6 +41,11 @@ public class Game {
         player.buyStock(userInputTicker, userInputAmount, stockMarket);
     }
 
+    /**
+     * Ask the user what stock they want to sell, and how many. Puts the user input into method sellStock().
+     *
+     * @param player  the user playing the game
+     */
     public void userActionSellStock(Player player) {
         System.out.println(player.displayListOfStocks());
         System.out.println("What do you want to sell?");
