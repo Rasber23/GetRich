@@ -22,6 +22,7 @@ public class Main {
                 if (game.getRound() > 5) {
                     break;
                 }
+
                 System.out.println("Day: " + game.getRound());
                 System.out.println("You are worth: " + player.getWealth());
                 System.out.println("What do you want to do?");

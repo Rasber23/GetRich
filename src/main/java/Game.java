@@ -73,7 +73,13 @@ public class Game {
     public int getRound() {
         return round;
     }
-
+    /**
+     * Generate a random number based on the risk Enum of the stock.
+     *
+     * @param risk Enum risk provided by the stock.
+     *
+     *
+     **/
     public double random(Enum<Risk> risk) {
         if (risk == Risk.HIGH) {
             return ThreadLocalRandom.current().nextDouble(-5, 5 + 1) * 1.5;
@@ -82,7 +88,11 @@ public class Game {
         }
         return ThreadLocalRandom.current().nextDouble(-5, 5 + 1);
     }
-
+    /**
+     * calculate the new prise of all the stocks in stockMarket list and set them to the correct
+     * prise based on the value provided by random.
+     *
+     **/
     public void changeStocks() {
         for (Stock stock : stockMarket) {
             double stockRisk = random(stock.getRisk());
