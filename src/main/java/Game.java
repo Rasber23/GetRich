@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
-    public final static double tax = 0.15;
+    public final static double TAX = 0.15;
     private final List<Stock> stockMarket;
     Scanner scan = new Scanner(System.in);
     String userInputTicker;
@@ -108,10 +108,18 @@ public class Game {
         round++;
     }
 
+    /** endGame
+     * When the game is finished game will determent if the player wins or looses,
+     * by comparing @players wealth minus tax with starting value.
+     *
+     * @param player get the players total wealth for comparing.
+     * @return
+     */
+
     public boolean endGame(Player player) {
         player.calculateWealth();
-        double wealthAfterTax = player.getWealth() * (1 - tax);
-        if( wealthAfterTax < 100)  {
+        double wealthAfterTax = player.getWealth() * (1 - TAX);
+        if( wealthAfterTax < Player.INITIAL_MONEY)  {
             return false;
         }
         return true;

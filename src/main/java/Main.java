@@ -35,7 +35,7 @@ public class Main {
 
             if (game.endGame(player)) {
                 System.out.println("Congratz" + player.getName() + ", you got some serious gains!");
-                System.out.println("You started out with 100 and now u got " + player.getWealth() * (1 - Game.tax));
+                System.out.println("You started out with 100 and now u got " + player.getWealth() * (1 - Game.TAX));
             } else {
                 System.out.println("GAME OVER, you lived fasted and died young!");
             }
