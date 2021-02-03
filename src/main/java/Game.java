@@ -113,7 +113,7 @@ public class Game {
      * by comparing @players wealth minus tax with starting value.
      *
      * @param player get the players total wealth for comparing.
-     * @return
+     * @return true if Player beats the game, false if Player lost the game.
      */
 
     public boolean endGame(Player player) {
