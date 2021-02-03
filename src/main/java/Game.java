@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Represents the game GetRichOrDieTrying
+ */
 public class Game {
     public final static double TAX = 0.15;
     private final List<Stock> stockMarket;
@@ -44,6 +47,12 @@ public class Game {
         player.sellStock(userInputTicker, userInputAmount);
     }
 
+    /**
+     * Lets the user choose from multiple outcomes, 1-4 to keep playing the game and 9 to end game
+     *
+     * @param userinput  a number-input from user
+     * @param player  the user playing the game
+     */
     public void whatDoYouWant(int userinput, Player player) {
         if (userinput == 1) {
             try {
@@ -125,6 +134,11 @@ public class Game {
         return true;
     }
 
+    /**
+     * Displays the stocks in stockmarket
+     *
+     * @return  a String containing the stocks available in the stockmarket
+     * */
     public String displayStockMarket() {
         String displaySM = Arrays.toString(stockMarket.toArray()).replace(", N", "N").replace(", N", "N");
         return displaySM.substring(1,displaySM.length()-1);
