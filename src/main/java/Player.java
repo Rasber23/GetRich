@@ -4,6 +4,7 @@ import java.util.*;
  *
  * */
 public class Player {
+    public final static double INITIAL_MONEY = 100;
 
     private String name;
     private int age;
@@ -14,7 +15,7 @@ public class Player {
     public Player(String name, int age) {
         this.name = name;
         this.age = age;
-        this.balance = 100;
+        this.balance = INITIAL_MONEY;
         this.wealth = 0;
         this.listOfStocks = new HashMap<Stock, Integer>();
     }
