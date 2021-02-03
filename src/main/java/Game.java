@@ -95,6 +95,14 @@ public class Game {
         }
     }
 
+    /** newRound
+     * When a player descides to sleep, a new round (day) will unfold.
+     * It will add a new round, then set previous prices on all stocks,
+     * then change all stocks prices and finally calculate players new wealth.
+     *
+     * @param player get player from calculating and setting a new wealth.
+     */
+
     public void newRound(Player player) {
         this.addRound();
         for (Stock stock : stockMarket) {
