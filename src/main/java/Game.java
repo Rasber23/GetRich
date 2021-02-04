@@ -63,7 +63,11 @@ public class Game {
         System.out.println("How many?");
         userInputAmount = scan.nextInt();
         this.checkUserAmount(userInputAmount);
-        player.sellStock(userInputTicker, userInputAmount);
+        try {
+            player.sellStock(userInputTicker, userInputAmount);
+        } catch (InvalidTickerInputException ex) {
+            System.out.println("Can´t sell what you aint got");
+        }
     }
 
     /**
@@ -155,7 +159,6 @@ public class Game {
      * Generate a random number based on the risk Enum of the stock.
      *
      * @param risk Enum risk provided by the stock.
-     *
      * @return return a double.
      **/
     public double random(Enum<Risk> risk) {

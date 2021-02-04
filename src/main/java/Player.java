@@ -53,10 +53,12 @@ public class Player {
      * @param amount the amount of stocks the user wants to sell
      **/
     public void sellStock(String ticker, int amount) {
-        for (Stock stock : listOfStocks.keySet()) {
-            if (stock.getTicker().toLowerCase().trim().equals(ticker.toLowerCase().trim())) {
 
-                /* Om amount är större eller lika med än value ta bort och sätt amount till value*/
+        for (Stock stock : listOfStocks.keySet()) {
+
+            if (stock.getTicker().toLowerCase().trim().equals(ticker.toLowerCase().trim())) {
+                System.out.println(listOfStocks.get(stock));
+
                 if (amount >= listOfStocks.get(stock)) {
                     amount = listOfStocks.get(stock);
                     listOfStocks.remove(stock);
@@ -66,9 +68,13 @@ public class Player {
                 }
                 this.balance = balance + (stock.getCurrPrice() * amount);
                 break;
+            }else{
+                throw new InvalidTickerInputException();
             }
+
         }
     }
+
 
     /**
      * Calculates what the users stocks are worth plus users existing balance
