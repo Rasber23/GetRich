@@ -30,30 +30,31 @@ class GameTest {
     }
 
     @Test
-    void testRandom(){
-        double randomNr=g1.random(Risk.LOW);
-        assertTrue(randomNr>-5 && randomNr<5);
+    void testRandom() {
+        double randomNr = g1.random(Risk.LOW);
+        assertTrue(randomNr > -5 && randomNr < 5);
         System.out.println(randomNr);
     }
+
     @RepeatedTest(100)
-    void testrandom100(){
-        double randomNr=g1.random(Risk.HIGH);
-        assertTrue(randomNr>-9 && randomNr<9);
+    void testrandom100() {
+        double randomNr = g1.random(Risk.HIGH);
+        assertTrue(randomNr > -9 && randomNr < 9);
         System.out.println(randomNr);
     }
 
     @RepeatedTest(30)
-    void changeStocksNeverZERO(){
+    void changeStocksNeverZERO() {
         Stock TSLA = g1.getStockMarket().get(0);
         g1.changeStocks();
-        assertNotEquals(0,TSLA.getCurrPrice(),0.001);
-        System.out.println("Andra:"+TSLA.getCurrPrice());
+        assertNotEquals(0, TSLA.getCurrPrice(), 0.001);
+        System.out.println("Andra:" + TSLA.getCurrPrice());
     }
 
     @Test
     void testAddRound() {
         g1.addRound();
-        assertEquals(2, g1.getRound() );
+        assertEquals(2, g1.getRound());
     }
 
     @Test
@@ -69,5 +70,27 @@ class GameTest {
         g1.endGame(player);
         assertTrue(g1.endGame(player));
     }
+
+    @Test
+    void testCheckUserTicker() {
+        assertThrows(InvalidTickerInputException.class, () -> {
+            g1.checkUserTicker("kanin");
+        });
+    }
+
+    @Test
+    void testCheckUserTickerNULL()  {
+        assertThrows(NullPointerException.class, () -> {
+            g1.checkUserTicker(null);
+        });
+    }
+
+    @Test
+    void testCheckUserAmount() {
+        assertThrows(InvalidAmountException.class, () -> {
+            g1.checkUserAmount(-1);
+        });
+    }
+
 
 }
