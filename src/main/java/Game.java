@@ -70,7 +70,7 @@ public class Game {
      * Checks user input for valid ticker amount.
      *
      * @param userInputAmount input from user.
-     * @throws InvalidAmountException if amount is <= 0.
+     * @throws InvalidAmountException if amount is les than 0.
      */
     public void checkUserAmount(int userInputAmount) {
         if (userInputAmount <= 0) {
@@ -155,6 +155,8 @@ public class Game {
      * Generate a random number based on the risk Enum of the stock.
      *
      * @param risk Enum risk provided by the stock.
+     *
+     * @return return a double.
      **/
     public double random(Enum<Risk> risk) {
         if (risk == Risk.HIGH) {
