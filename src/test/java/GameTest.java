@@ -32,20 +32,22 @@ class GameTest {
     @Test
     void testRandom(){
         double randomNr=g1.random(Risk.LOW);
-        assertTrue(randomNr>-5 && randomNr<10);
+        assertTrue(randomNr>-5 && randomNr<5);
+        System.out.println(randomNr);
+    }
+    @RepeatedTest(100)
+    void testrandom100(){
+        double randomNr=g1.random(Risk.HIGH);
+        assertTrue(randomNr>-9 && randomNr<9);
+        System.out.println(randomNr);
     }
 
-    @RepeatedTest(1000)
+    @RepeatedTest(30)
     void changeStocksNeverZERO(){
-        g1.changeStocks();
         Stock TSLA = g1.getStockMarket().get(0);
+        g1.changeStocks();
         assertNotEquals(0,TSLA.getCurrPrice(),0.001);
-        System.out.println(TSLA.getCurrPrice());
-    }
-
-    @Test
-    void whatDoYouWant() {
-
+        System.out.println("Andra:"+TSLA.getCurrPrice());
     }
 
     @Test

@@ -37,8 +37,9 @@ public class Game {
         userInputTicker = scan.next();
         System.out.println("How many?");
         userInputAmount = scan.nextInt();
-
+        //if sats med checker
         player.buyStock(userInputTicker, userInputAmount, stockMarket);
+
     }
 
     /**
@@ -50,10 +51,11 @@ public class Game {
         System.out.println(player.displayListOfStocks());
         System.out.println("What do you want to sell?");
         System.out.println("Type ticker");
+
         userInputTicker = scan.next();
         System.out.println("How many?");
         userInputAmount = scan.nextInt();
-
+        //checker endast siffror.
         player.sellStock(userInputTicker, userInputAmount);
     }
 
@@ -113,12 +115,15 @@ public class Game {
      *
      **/
     public void changeStocks() {
+        double stockRisk;
         for (Stock stock : stockMarket) {
-            double stockRisk = random(stock.getRisk());
+            stockRisk = random(stock.getRisk());
             if (stockRisk < 0) {
-                stock.setCurrPrice(stock.getCurrPrice() * (Math.abs(stockRisk) / 10));
+                stock.setCurrPrice(stock.getCurrPrice() * (1-Math.abs(stockRisk) /10));
+
             } else {
-                stock.setCurrPrice(stock.getCurrPrice() * ((random(stock.getRisk()) / 10) + 1));
+                stock.setCurrPrice(stock.getCurrPrice() * ((stockRisk / 10) + 1));
+
             }
 
         }
