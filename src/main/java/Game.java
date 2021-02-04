@@ -66,13 +66,25 @@ public class Game {
         player.sellStock(userInputTicker, userInputAmount);
     }
 
+    /**
+     * Checks user input for valid ticker amount.
+     *
+     * @param userInputAmount input from user.
+     * @throws InvalidAmountException if amount is <= 0.
+     */
     public void checkUserAmount(int userInputAmount) {
         if (userInputAmount <= 0) {
             throw new InvalidAmountException();
         }
     }
 
-    //test skall göras
+    /**
+     * Checks user input for valid ticker name.
+     *
+     * @param userInputTicker input from user.
+     * @throws InvalidTickerInputException if ticker input not matches stockmarket list.
+     * @throws NullPointerException        if ticker is null.
+     */
     public void checkUserTicker(String userInputTicker) {
         if (userInputTicker.equals(null)) {
             throw new NullPointerException();
@@ -107,12 +119,15 @@ public class Game {
             }
         } else if (userinput == 2) {
             try {
+
                 this.userActionSellStock(player);
 
             } catch (InvalidTickerInputException ex) {
                 System.out.println("that was not a ticker!");
-            }catch(InvalidAmountException ex){
+            } catch (InvalidAmountException ex) {
                 System.out.println("THATS to DAM LOW!");
+            } catch (IndexOutOfBoundsException ex) {
+                System.out.println("No stocks to sell");
             }
 
         } else if (userinput == 3) {

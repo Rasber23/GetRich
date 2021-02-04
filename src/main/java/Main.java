@@ -8,13 +8,27 @@ public class Main {
 
             Game game = new Game();
             int userinput = 0;
+            String userName;
+            int userAge = 0;
+            do {
 
-            System.out.println("What is your name?");
-            String userName = scan.nextLine();
-            System.out.println("How old are you?");
-            int userAge = scan.nextInt();
+                userAge = 0;
+                System.out.println("What is your name?");
+                userName = scan.nextLine();
+                try {
+                    System.out.println("How old are you?");
+                    userAge = scan.nextInt();
+                    scan.nextLine();
+
+                    game.checkUserAmount(userAge);
+                } catch (InvalidAmountException ex) {
+                    System.out.println("Please enter a valid age!");
+                }
+
+            } while (userAge <= 0 || userName.equals(""));
 
             Player player = new Player(userName, userAge);
+
 
             player.calculateWealth();
 

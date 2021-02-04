@@ -17,7 +17,7 @@ class StockTest {
     @Test
     void testPrePriceUpdate() {
         s1.upDatePrePrice();
-        assertEquals(s1.getCurrPrice(),s1.getPrePrice(),00.1);
+        assertEquals(s1.getCurrPrice(), s1.getPrePrice(), 00.1);
     }
 
 

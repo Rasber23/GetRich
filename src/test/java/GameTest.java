@@ -79,7 +79,7 @@ class GameTest {
     }
 
     @Test
-    void testCheckUserTickerNULL()  {
+    void testCheckUserTickerNULL() {
         assertThrows(NullPointerException.class, () -> {
             g1.checkUserTicker(null);
         });
@@ -89,6 +89,13 @@ class GameTest {
     void testCheckUserAmount() {
         assertThrows(InvalidAmountException.class, () -> {
             g1.checkUserAmount(-1);
+        });
+    }
+
+    @Test
+    void testNothingToSell() {
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            g1.userActionSellStock(player);
         });
     }
 

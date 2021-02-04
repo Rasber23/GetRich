@@ -16,7 +16,7 @@ public class Stock {
         this.risk = risk;
     }
 
-    public void upDatePrePrice(){
+    public void upDatePrePrice() {
         this.setPrePrice(this.currPrice);
     }
 
