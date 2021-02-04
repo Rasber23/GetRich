@@ -115,5 +115,12 @@ class PlayerTest {
         assertEquals(100, player.getWealth());
     }
 
+    @Test
+    void testCantSellwhatYouDonthave() {
+        player.buyStock("GME", 1, g1.getStockMarket());
+        assertThrows(InvalidTickerInputException.class, () -> {
+            player.sellStock("tsla",1);
+        });
+    }
 
 }
